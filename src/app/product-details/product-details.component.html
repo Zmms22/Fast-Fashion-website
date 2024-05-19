@@ -1,0 +1,26 @@
+<div class="product-details-container" *ngIf="productData">
+    <div class="product-image-section">
+      <img class="product-img" src="{{productData.image}}" alt="{{productData.name}}">
+    </div>
+    <div class="product-info-section">
+      <h1>{{productData.name}}</h1>
+      <h3>Price: {{productData.price | currency}}</h3>
+      <div class="product-color-section">
+        <span>Color:</span>
+        <div [style.backgroundColor]="productData.color" class="product-color"></div>
+      </div>
+      <h6>Category: {{productData.category}}</h6>
+      <p>{{productData.description}}</p>
+      <div class="product-actions">
+        <button class="btn btn-primary">Buy Now</button>
+        <button *ngIf="removeCart" class="btn btn-danger" (click)="removeToCart(productData.id)">Remove from Cart</button>
+        <button *ngIf="!removeCart" class="btn btn-secondary" (click)="addToCart()">Add to Cart</button>
+      </div>
+      <div class="quantity-group">
+        <button (click)="handleQuantity('min')">-</button>
+        <input type="number" [(ngModel)]="productQuantity" min="1" max="20">
+        <button (click)="handleQuantity('plus')">+</button>
+      </div>
+    </div>
+  </div>
+  
